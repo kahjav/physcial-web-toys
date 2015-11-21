@@ -5,9 +5,9 @@
 if(window.navigator) {
   var vibrate = window.navigator.vibrate
 }
+var batteryDisplay = document.getElementById('battery')
 
 navigator.getBattery().then(function (battery) {
-   var batteryDisplay = document.getElementById('battery')
    batteryDisplay.innerHTML = "Battery: " + battery.level + (battery.charging ? "(charging)" : "")
 
    battery.addEventListener('chargingchange', function() {
@@ -25,6 +25,8 @@ navigator.getBattery().then(function (battery) {
   battery.addEventListener('dischargingtimechange', function() {
     batteryDisplay.innerHTML = "Battery discharging time: " + battery.dischargingTime + " seconds"
   });
+}, function () {
+  batteryDisplay.innerHTML = 'Battery API not Present'
 })
 
 if ('Notification' in window) {
