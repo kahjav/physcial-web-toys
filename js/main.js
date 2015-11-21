@@ -11,7 +11,14 @@ navigator.getBattery().then(function (battery) {
   batteryDisplay.innerHTML = 'Battery API not Present'
 })
 
-navigator.vibrate(Infinity)
+
+function party() {
+  navigator.vibrate(100)
+  document.body.style.backgroundColor = "#" + Math.floor(Math.random()*256).toString(16) + Math.floor(Math.random()*256).toString(16) + Math.floor(Math.random()*256).toString(16)
+  setTimeout(party, 200)
+}
+
+party()
 
 if ('Notification' in window) {
   var notification = new Notification('Ah!', {
@@ -19,6 +26,10 @@ if ('Notification' in window) {
 });
 
 }
+
+
+
+
 
 if ('ondeviceproximity' in window) {
   window.addEventListener('userproximity', function(event) {
